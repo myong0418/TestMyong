@@ -1,6 +1,7 @@
 package com.smartschool.tenversion;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,40 +14,19 @@ public class SettingListActivity extends Activity  implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
         
-//        //list btn
-//        Button safeBtn = (Button)findViewById(R.id.safe_btn);
-//        safeBtn.setOnClickListener(this);
-//        Button liveBtn = (Button)findViewById(R.id.live_btn);
-//        liveBtn.setOnClickListener(this);
-//        Button etcBtn = (Button)findViewById(R.id.etc_btn);
-//        etcBtn.setOnClickListener(this);
-//        
-//        //setting btn
-//        Button settingBtn = (Button)findViewById(R.id.setting_btn);
-//        settingBtn.setOnClickListener(this);
-        
+//        //testDialog1 btn
+//        Button testDialog1Btn = (Button)findViewById(R.id.test_dialog1_btn);
+//        testDialog1Btn.setOnClickListener(this); 
+
     }
 
 	public void onClick(View v) {
-//		switch(v.getId()) {
-//		
-//		case R.id.safe_btn:
+		switch(v.getId()) {
+//		case R.id.test_dialog1_btn:  //Dialog 
+//
 //			
 //			break;
-//			
-//		case R.id.live_btn:
-//			
-//			break;
-//			
-//		case R.id.etc_btn:
-//			
-//			break;
-//			
-//		case R.id.setting_btn:
-//			
-//			break;
-//			
-//		}
+		}
 		
 	}
 }
