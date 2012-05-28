@@ -31,6 +31,8 @@ public class TenVersionActivity extends Activity  implements OnClickListener{
         Button testdailogBtn = (Button)findViewById(R.id.testdailog_btn);
         testdailogBtn.setOnClickListener(this);
         
+    
+        
     }
 
 	public void onClick(View v) {
