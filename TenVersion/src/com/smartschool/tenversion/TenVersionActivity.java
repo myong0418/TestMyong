@@ -31,7 +31,9 @@ public class TenVersionActivity extends Activity  implements OnClickListener{
         Button testdailogBtn = (Button)findViewById(R.id.testdailog_btn);
         testdailogBtn.setOnClickListener(this);
         
-    
+       //test Flipper btn
+        Button testFlipperBtn = (Button)findViewById(R.id.testFlipper_btn);
+        testFlipperBtn.setOnClickListener(this);
         
     }
 
@@ -54,7 +56,8 @@ public class TenVersionActivity extends Activity  implements OnClickListener{
 			break;
 			
 		case R.id.setting_btn:
-			intent = new Intent(this,SettingListActivity.class);
+//			intent = new Intent(this,SettingListActivity.class);
+			intent = new Intent(this,SettingActivity.class);
 			startActivity(intent);
 			break;
 			
@@ -64,6 +67,10 @@ public class TenVersionActivity extends Activity  implements OnClickListener{
 			startActivity(intent);
 			break;
 
+		case R.id.testFlipper_btn:
+			intent = new Intent(this,FlipperView.class);
+			startActivity(intent);
+			break;
 			
 		}
 		

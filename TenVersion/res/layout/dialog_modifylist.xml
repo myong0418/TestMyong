@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="240dip"
+  android:layout_height="160dip"
+  android:background="#FFFACD"
+  >
+  <TextView 
+      android:id="@+id/text01"
+     android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textColor="#0000CD"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:text="수정할 내용"/>
+ <LinearLayout
+     android:id="@+id/modifylist_btnlayout"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:layout_alignParentBottom="true"
+     android:orientation="horizontal" >
+
+     <Button
+         android:id="@+id/modifylist_modifyBtn"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:text="수정" />
+
+     <Button
+         android:id="@+id/modifylist_cancelBtn"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:text="취소" />
+ </LinearLayout>
+ 
+<!--   <TextView
+     android:id="@+id/modifylist_textview"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_above="@id/modifylist_btnlayout"
+      /> -->
+
+   <EditText
+       android:id="@+id/modifylist_editview"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_below="@+id/text01"
+       android:layout_marginTop="14dp"
+       android:maxLength="20"
+       android:ems="10" >
+
+       <requestFocus />
+   </EditText>
+
+</RelativeLayout>
+

@@ -4,25 +4,57 @@
     <!-- TenVersionActivity.java -->
     <string name="hello">Hello World, TenVersionActivity!</string>
     <string name="app_name">TenVersion</string>
-    <string name="safe_btn_txt">SafeList  </string>
-    <string name="live_btn_txt">Live List  </string>
-    <string name="etc_btn_txt">Etc List  </string>
+    <string name="safe_btn_txt">안전  </string>
+    <string name="live_btn_txt">생명  </string>
+    <string name="etc_btn_txt">기타  </string>
     <string name="setting_btn_txt">Setting  </string>
     <string name="testdailog_btn_txt">test dialog </string>
 
-    <!-- EtcListActivity.java -->
+    <!-- SafeListActivity.java -->
+ 	<string name="all_del_select_txt">전체선택</string>
+    <string name="all_del_deselect_txt">전체해제</string>
+
 
 
     <!-- LiveListActivity.java -->
-
-
-    <!-- SafeListActivity.java -->
+        
+        
+    <!-- EtcListActivity.java -->
 
 
     <!-- SettingListActivity.java -->
-
+    <string name="setting_wifi_txt">알람 Wi-Fi 선택</string>
+    <string name="setting_wifi_summary_txt">사용 할  Wi-Fi 선택</string>
+    <string name="setting_alarm_txt">알람 시간 설정</string>
+    <string name="setting_alarm_summary_txt">시간 설정으로 사용</string>
+    <string name="setting_sound_txt">알람 소리 On/Off</string>
+    <string name="setting_sound_summary_txt"></string>
+    <string name="setting_vibrate_txt">알람 진동  On/Off</string>
+    <string name="setting_vibrate_summary_txt"></string>
+    <string name="setting_help_txt">도움말</string>
+    <string name="setting_help_summary_txt"></string>
+    <string name="setting_version_txt">버전정보</string>
+    <string name="setting_version_summary_txt"></string>
 
     <!-- TestDialogActivity.java -->
     <string name="test_dialog1_btn_txt">test dialog 1 </string>
+    
+    <!-- FlipperViewActivity.java -->
+    <string name="testFlipper_btn_txt">test flipper View </string>
+    
+    <!-- PreviewListActivity.java -->
+    <string name="preview_okbtn_txt">확인</string>
+    
+     <!-- List Tag id -->
+    <item type="id" name="tag_id"></item> 
+    <item type="id" name="tag_contents"></item> 
+    <item type="id" name="tag_mode"></item> 
+    <item type="id" name="tag_del_satate"></item>
+    
+    
+    <!-- CustomDialog.java -->
+    <!-- FunDialog List -->
+    <string name="funlist_okbtn_txt">확인</string>
+    
     
 </resources>

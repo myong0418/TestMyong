@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="networks">
-        <item>접속 허용</item>
-        <item>접속여부 물어보기</item>
-        <item>허용하지 않음</item>
-    </string-array>
-    <string-array name="network_codes">
-        <item>010</item>
-        <item>011</item>
-        <item>012</item>
-    </string-array>    
+<string-array name="fun_list">
+        <item>이빨에 고춧가루 낀 거 알아요?</item>
+		<item>바지는 입었나요?</item>
+		<item>머리는 감았나요?</item>
+		<item>신발은 신었어요?</item>
+		<item>핸드폰 챙겼어요?</item>
+		<item>교통카드 챙겼어요?</item>
+		<item>가방은 챙겼어요?</item>
+		<item>화장한 거 맞아요?</item>
+		<item>우산은 챙겼어요?</item>
+		<item>개념은 챙겼어요?</item>
+</string-array>
+
+<string-array name="set_safe_dbdata">
+        <item>내방 불끄기</item>
+		<item>가스밸브 잠그기</item>
+		<item>창문 닫기</item>
+</string-array>
+<string-array name="set_live_dbdata">
+        <item>뽀삐 밥주기</item>
+		<item>화분에 물주기</item>
+</string-array>
+<string-array name="set_etc_dbdata">
+        <item>지갑 챙기기</item>
+		<item>열쇠 챙기기</item>
+		<item>약 먹기</item>
+</string-array>
 </resources>
