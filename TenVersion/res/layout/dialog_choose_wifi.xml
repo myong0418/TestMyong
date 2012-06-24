@@ -2,18 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
+    android:orientation="vertical"
+    android:background="#E30005" >
+
     <ListView
         android:id="@+id/choose_wifi_listview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        android:paddingLeft="3dip"
+        android:paddingTop="3dip"
+        android:paddingRight="3dip">
 
     </ListView>
 
  <LinearLayout
      android:id="@+id/choose_wifi_btnlayout"
-     android:layout_width="280dip"
+     android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:layout_gravity="bottom"
      android:orientation="horizontal" >

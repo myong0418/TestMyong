@@ -5,7 +5,9 @@
   android:id="@+id/wifilist_relativelayout"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
-  smartschool:checkable="@+id/wifilist_radio_Btn">
+  smartschool:checkable="@+id/wifilist_radio_Btn"
+  android:background="#FFFACD"
+  android:paddingLeft="3dip">
   
 <!--  <RelativeLayout
   android:layout_width="60px"
@@ -37,12 +39,13 @@
    		android:id="@+id/wifilist_ssid_tv"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:textSize="20sp" />
+    	android:textSize="20sp" 
+    	android:textColor="#1B6B18"/>
     <TextView
         android:id="@+id/wifilist_bssid_summary_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         />
+        android:textColor="#224307" />
 
 </LinearLayout>
 

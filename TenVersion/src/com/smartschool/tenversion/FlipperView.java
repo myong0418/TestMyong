@@ -139,15 +139,41 @@ public class FlipperView extends Activity  implements View.OnTouchListener {
 			flipper.removeAllViews(); // 추가한 부분
 			for(int i=0; i<checkList.size(); i++){
 				TextView tv = new TextView(this);
-//				TextView tv = (TextView) findViewById(R.id.info);
-//				tv.setText("View :: "+i+"   contents:"+checkList.get(i).getContents() );
 				tv.setText( checkList.get(i).getContents() );
+				tv.setTextColor(Color.WHITE);
 				tv.setTextSize(30);
-				tv.setTextColor(Color.BLUE);
 				tv.setTag(i);
-				// Todo 그림자 효과 주려는 부분인데 에러나서 일단 막아 놓음
+				
+				//TODO 그림자 효과 주려는 부분인데 에러나서 일단 막아 놓음
 //				tv.setTextAppearance(this,  
 //						R.style.AudioFileInfoOverlayText);
+//				tv.setTextAppearance(this,  R.style.AudioFileInfoOverlayText); 
+
+				
+				tv.setShadowLayer(2, 4, 4, Color.BLACK); 
+
+				
+				
+//CustomTextView	
+				
+//				 android:id="@+id/CustomTextView"  
+//						    android:layout_width="fill_parent"  
+//						    android:layout_height="wrap_content"  
+//						    android:text="Hello World"  
+//						    android:textColor="#ffffffff"  
+//						    android:singleLine="true"  
+//						    tj:textStroke="true"  
+//						    tj:textStrokeWidth="7.0"  
+//						    tj:textStrokeColor="#ffff0000"  
+//						    >  
+//
+//				CustomTextView tv = new CustomTextView(this);
+//				tv.setText( checkList.get(i).getContents() );
+//				tv.setTextColor(Color.BLUE);
+//				tv.setTextSize(30);
+//			
+//				tv.setTag(i);
+
 				flipper.addView(tv);
 				
 			}
