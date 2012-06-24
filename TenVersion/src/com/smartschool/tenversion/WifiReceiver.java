@@ -19,6 +19,7 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Vibrator;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 public class WifiReceiver extends BroadcastReceiver{
@@ -68,9 +69,13 @@ public class WifiReceiver extends BroadcastReceiver{
 					// wifi network
 					Log.d(TAG, "wifi network");
 
-					if (SettingListActivity.wifiListPref != null) {
-						// SettingListActivity.wifiListPref.setEnabled(true);
-						initWifiSetting(context);
+					//enable layout 
+					if (SettingActivity.wifiLayout != null) {
+						SettingActivity.wifiLayout.setEnabled(true);
+						for ( int i = 0; i < SettingActivity.wifiLayout.getChildCount();  i++ ){ 
+						    View view = SettingActivity.wifiLayout.getChildAt(i); 
+						    view.setEnabled(true);
+						} 
 					}
 
 					String connectedWifi = getConnectedWifiBSSID(context);
@@ -101,10 +106,16 @@ public class WifiReceiver extends BroadcastReceiver{
 					// mobile network
 					Log.d(TAG, "mobile network");
 
-					if (SettingListActivity.wifiListPref != null) {
-						SettingListActivity.wifiListPref.setEnabled(false);
+					//disable layout 
+					if (SettingActivity.wifiLayout != null) {
+						SettingActivity.wifiLayout.setEnabled(false);
+						for ( int i = 0; i < SettingActivity.wifiLayout.getChildCount();  i++ ){ 
+						    View view = SettingActivity.wifiLayout.getChildAt(i); 
+						    view.setEnabled(false);
+						} 
 					}
-
+					
+					
 					// cancel notification
 					cancleNotification(context);
 					// alarm
@@ -238,62 +249,85 @@ public class WifiReceiver extends BroadcastReceiver{
 	
 
 /**WIFI START**/
-	public static boolean initWifiSetting(Context context) {
-		Log.v(TAG, "initWifiSetting()");
+//	public static boolean initWifiSetting(Context context) {
+//		Log.v(TAG, "initWifiSetting()");
+//
+//		if (SettingListActivity.wifiListPref == null) {
+//			SettingListActivity.wifiListPref.setEnabled(false);
+//			return false;
+//		}
+//
+//		WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+//		if (wifiManager == null) {
+//			SettingListActivity.wifiListPref.setEnabled(false);
+//			return false;
+//		}
+//
+//		int scanCount = 0;
+//
+//		// init WIFISCAN
+//		List<ScanResult> mScanResult; // ScanResult List
+//		mScanResult = wifiManager.getScanResults(); // ScanResult
+//		if (mScanResult == null) {
+//			Log.v(TAG, "mScanResult==null");
+//			SettingListActivity.wifiListPref.setEnabled(false);
+//			return false;
+//			
+//		} else {
+//			Log.v(TAG, "mScanResult!=null");
+//			SettingListActivity.wifiListPref.setEnabled(true);
+//		}
+//		CharSequence[] entries = new CharSequence[mScanResult.size()+1];
+//		CharSequence[] entryValues = new CharSequence[mScanResult.size()+1];
+//
+//		// Scan count
+//		Log.v(TAG, "Scan count is \t" + ++scanCount + " times \n");
+//
+//		entries[0] = "설정안함";
+//		entryValues[0] = "";
+//		
+//		Log.v(TAG, "=======================================\n");
+//		for (int i = 0; i < mScanResult.size(); i++) {
+//			ScanResult result = mScanResult.get(i);
+//			Log.v(TAG, (i + 1) + ". SSID : " + result.SSID.toString()
+//					+ "\t\t RSSI : " + result.level + " dBm\n");
+//
+//			entries[i+1] = result.SSID.toString();
+//			entryValues[i+1] = result.BSSID.toString();
+//
+//			Log.d(TAG, (i + 1) + ". entries : " + entries[i+1]);
+//			Log.d(TAG, (i + 1) + ". entryValues : " + entryValues[i+1]);
+//		}
+//		Log.v(TAG, "=======================================\n");
+//
+//		SettingListActivity.wifiListPref.setEntries(entries);
+//		SettingListActivity.wifiListPref.setEntryValues(entryValues);
+//		return true;
+//	}
+	
 
-		if (SettingListActivity.wifiListPref == null) {
-			SettingListActivity.wifiListPref.setEnabled(false);
-			return false;
+
+	public static void compairWifiConnectionMode(Context context){
+		String connectedWifi = getConnectedWifiBSSID(context);
+		String wifimode = getWifiSettingBSSID(context);
+		Log.e(TAG, "connectedWifi::" + connectedWifi + ", wifimode"+ wifimode);
+		if (connectedWifi == null || wifimode == null) {
+			Log.e(TAG, "failed wifi info");
+			cancleNotification(context);
+			Toast.makeText(context, "failed wifi info", Toast.LENGTH_SHORT);
 		}
 
-		WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-		if (wifiManager == null) {
-			SettingListActivity.wifiListPref.setEnabled(false);
-			return false;
-		}
-
-		int scanCount = 0;
-
-		// init WIFISCAN
-		List<ScanResult> mScanResult; // ScanResult List
-		mScanResult = wifiManager.getScanResults(); // ScanResult
-		if (mScanResult == null) {
-			Log.v(TAG, "mScanResult==null");
-			SettingListActivity.wifiListPref.setEnabled(false);
-			return false;
-			
+		if (connectedWifi != null && connectedWifi.equals(wifimode)) { // same  connected wifi mode
+			Log.d(TAG, "noti.start");
+			// set Notification
+			setNotification(context);
+			WifiState = true;
 		} else {
-			Log.v(TAG, "mScanResult!=null");
-			SettingListActivity.wifiListPref.setEnabled(true);
+			cancleNotification(context);
 		}
-		CharSequence[] entries = new CharSequence[mScanResult.size()+1];
-		CharSequence[] entryValues = new CharSequence[mScanResult.size()+1];
-
-		// Scan count
-		Log.v(TAG, "Scan count is \t" + ++scanCount + " times \n");
-
-		entries[0] = "설정안함";
-		entryValues[0] = "";
-		
-		Log.v(TAG, "=======================================\n");
-		for (int i = 0; i < mScanResult.size(); i++) {
-			ScanResult result = mScanResult.get(i);
-			Log.v(TAG, (i + 1) + ". SSID : " + result.SSID.toString()
-					+ "\t\t RSSI : " + result.level + " dBm\n");
-
-			entries[i+1] = result.SSID.toString();
-			entryValues[i+1] = result.BSSID.toString();
-
-			Log.d(TAG, (i + 1) + ". entries : " + entries[i+1]);
-			Log.d(TAG, (i + 1) + ". entryValues : " + entryValues[i+1]);
-		}
-		Log.v(TAG, "=======================================\n");
-
-		SettingListActivity.wifiListPref.setEntries(entries);
-		SettingListActivity.wifiListPref.setEntryValues(entryValues);
-		return true;
 	}
-
+	
+	
 	public static String getConnectedWifiSSID(Context mContext) {
 		Log.v(TAG, "getConnectedWifiSSID()");
 		wifiManager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
@@ -318,7 +352,7 @@ public class WifiReceiver extends BroadcastReceiver{
 
 	public static String getWifiSettingBSSID(Context mContext) {
 		SharedPreferences sharedPrefs = mContext.getSharedPreferences(KEY_WIFI_MODE, Context.MODE_PRIVATE);
-		String wifiBSSID = sharedPrefs.getString(KEY_WIFIBSSID, null);
+		String wifiBSSID = sharedPrefs.getString(KEY_WIFIBSSID, "");
 		return wifiBSSID;
 	}
 /**WIFI END**/

@@ -31,8 +31,8 @@
 		android:textSize="13sp"
 		/>
 	</LinearLayout>
-	<Spinner
-		android:id="@+id/wifi_spinner"
+	<Button
+		android:id="@+id/wifi_btn"
 		android:layout_width="0dip"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"

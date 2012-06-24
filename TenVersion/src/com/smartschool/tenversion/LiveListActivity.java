@@ -25,8 +25,8 @@ public class LiveListActivity extends Activity implements OnClickListener {
 	//String
 	 String allDelSelectTxt ;
 	 String allDelDeselectTxt;
-	private static final int MODE = 2; //safe
-	private static final String liveMode="2"; //safe
+	private static final int MODE = 2; 			//live
+	private static final String liveMode="2"; //live
 	private boolean DEL_MODE = false; 
 	private boolean ALL_DEL_MODE = false; 
 	//setListView 

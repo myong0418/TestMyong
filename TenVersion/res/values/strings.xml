@@ -51,10 +51,15 @@
     <item type="id" name="tag_mode"></item> 
     <item type="id" name="tag_del_satate"></item>
     
+   <item type="id" name= "tag_wifi_item"></item>
+    <item type="id" name="wifi_ssid"></item>
+    <item type="id" name="wifi_bssid"></item>
     
     <!-- CustomDialog.java -->
-    <!-- FunDialog List -->
+    <!-- Fun List Dialog  -->
     <string name="funlist_okbtn_txt">확인</string>
+    <!-- Choose Wifi Dialog -->
+    <string name="choose_wifi_cancebtn_txt">취소</string>
     
     
 </resources>

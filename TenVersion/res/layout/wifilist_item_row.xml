@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.smartschool.tenversion.wifiChackableLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:smartschool="http://schemas.android.com/apk/res/com.smartschool.tenversion"
+  android:id="@+id/wifilist_relativelayout"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  smartschool:checkable="@+id/wifilist_radio_Btn">
+  
+<!--  <RelativeLayout
+  android:layout_width="60px"
+  android:layout_height="wrap_content"
+  android:layout_marginLeft="8dip"
+  android:background="@drawable/photo_frame" 
+  >
+ <ImageView
+   android:id="@+id/buddy_image"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:layout_centerHorizontal="true"
+   android:layout_marginTop="5px"
+   android:scaleType="centerCrop"
+   
+ 	/>
+</RelativeLayout> -->
+ 
+<LinearLayout
+  android:id="@+id/wifilist_text_linearlayout"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:layout_centerVertical="true"
+
+>
+
+	<TextView
+   		android:id="@+id/wifilist_ssid_tv"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:textSize="20sp" />
+    <TextView
+        android:id="@+id/wifilist_bssid_summary_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         />
+
+</LinearLayout>
+
+
+<RadioButton
+    android:id="@+id/wifilist_radio_Btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_marginLeft="5dip"
+    android:clickable="false" 
+    android:focusable="false" 
+     />
+
+<ImageView
+    android:id="@+id/wifilist_rssi_imageview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toLeftOf="@id/wifilist_radio_Btn"
+    android:layout_marginLeft="5dip"
+    android:src="@drawable/ic_launcher" />
+
+</com.smartschool.tenversion.wifiChackableLayout>
