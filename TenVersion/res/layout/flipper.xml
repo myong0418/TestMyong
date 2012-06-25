@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
@@ -7,34 +7,32 @@
     <ViewFlipper
         android:id="@+id/view_flipper"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-        
-        <TextView android:id="@+id/info"
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       style="@style/AudioFileInfoOverlayText"
-       android:gravity="center" />
-
-<!--         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="첫번째 페이지"
-            android:textColor="#FF00FF00"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="두번째 페이지"
-            android:textColor="#FFFF0000"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="세번째 페이지"
-            android:textColor="#FFFFFF00"
-            android:textStyle="bold" /> -->
+        android:layout_height="fill_parent"
+        android:layout_gravity="center" >
     </ViewFlipper>
+        
+    <Button
+        android:id="@+id/left_Btn"
+        android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="Left" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/right_Btn"
+        android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="Right" />
+
+    <Button
+        android:id="@+id/skip_Btn"
+        android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="SKIP" />
+
+</RelativeLayout>

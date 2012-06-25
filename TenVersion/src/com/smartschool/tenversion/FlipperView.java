@@ -10,18 +10,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-public class FlipperView extends Activity  implements View.OnTouchListener {
+public class FlipperView extends Activity implements View.OnTouchListener,OnClickListener {
 	private static final String TAG = "TestFlipperviewActivity";
     ViewFlipper flipper;
      
      float xAtDown;
      float xAtUp;
+
+	// set Button
+	private Button leftBtn = null;
+	private Button rightBtn = null;
+	private Button skipBtn = null;
 
      private int listNum = 0;      //TODO add list length
      
@@ -31,10 +38,20 @@ public class FlipperView extends Activity  implements View.OnTouchListener {
 		setContentView(R.layout.flipper);
 		
 		//background blur
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
+				WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
 		
 		flipper = (ViewFlipper) findViewById(R.id.view_flipper);
 		flipper.setOnTouchListener(this);
+
+		leftBtn = (Button)findViewById(R.id.left_Btn);
+		leftBtn.setOnClickListener(this);
+		
+		rightBtn = (Button)findViewById(R.id.right_Btn);
+		rightBtn.setOnClickListener(this);
+
+		skipBtn = (Button)findViewById(R.id.skip_Btn);
+		skipBtn.setOnClickListener(this);
 
 		// add view
 		addFlipperChildView();
@@ -139,41 +156,14 @@ public class FlipperView extends Activity  implements View.OnTouchListener {
 			flipper.removeAllViews(); // 추가한 부분
 			for(int i=0; i<checkList.size(); i++){
 				TextView tv = new TextView(this);
-				tv.setText( checkList.get(i).getContents() );
-				tv.setTextColor(Color.WHITE);
+			// tv.setText("View :: "+i+"   contents:"+checkList.get(i).getContents()
+			// );
+			tv.setText(i + " : " + checkList.get(i).getContents());
 				tv.setTextSize(30);
+			tv.setTextColor(Color.WHITE);
+			tv.setShadowLayer(3, 3, 3, Color.BLACK);
+			tv.setPadding(70, 300, 0, 0);
 				tv.setTag(i);
-				
-				//TODO 그림자 효과 주려는 부분인데 에러나서 일단 막아 놓음
-//				tv.setTextAppearance(this,  
-//						R.style.AudioFileInfoOverlayText);
-//				tv.setTextAppearance(this,  R.style.AudioFileInfoOverlayText); 
-
-				
-				tv.setShadowLayer(2, 4, 4, Color.BLACK); 
-
-				
-				
-//CustomTextView	
-				
-//				 android:id="@+id/CustomTextView"  
-//						    android:layout_width="fill_parent"  
-//						    android:layout_height="wrap_content"  
-//						    android:text="Hello World"  
-//						    android:textColor="#ffffffff"  
-//						    android:singleLine="true"  
-//						    tj:textStroke="true"  
-//						    tj:textStrokeWidth="7.0"  
-//						    tj:textStrokeColor="#ffff0000"  
-//						    >  
-//
-//				CustomTextView tv = new CustomTextView(this);
-//				tv.setText( checkList.get(i).getContents() );
-//				tv.setTextColor(Color.BLUE);
-//				tv.setTextSize(30);
-//			
-//				tv.setTag(i);
-
 				flipper.addView(tv);
 				
 			}
@@ -187,6 +177,27 @@ public class FlipperView extends Activity  implements View.OnTouchListener {
 			startActivity(intent);
 			finish();
 	  }
+
+	
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch(v.getId()){
+		case R.id.left_Btn: 		//add list Item
+			Log.v(TAG,"left_Btn Click : " + listNum);
+			right();
+			flipper.showPrevious();
+			
+			break;
+		case R.id.right_Btn: 		//add list Item
+			Log.v(TAG,"right_Btn Click : " + listNum);
+			left();
+			flipper.showNext();
+			break;
+		case R.id.skip_Btn: 		//add list Item
+			Log.v(TAG,"right_Btn Click : " + listNum);
+			showPreview();			
+			break;
+
+		}
 	}
-
-
+}

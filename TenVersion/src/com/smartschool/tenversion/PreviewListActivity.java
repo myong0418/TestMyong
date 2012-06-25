@@ -36,7 +36,7 @@ public class PreviewListActivity extends Activity implements OnClickListener{
 		okBtn.setOnClickListener(this);
 		
 		previewTV = (TextView)findViewById(R.id.preview_tv);
-		previewTV.setShadowLayer(2, 4, 4, Color.BLACK); 
+
 
         updateListview();
 	}

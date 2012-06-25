@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     
     <!-- TenVersionActivity.java -->
-    <string name="hello">Hello World, TenVersionActivity!</string>
     <string name="app_name">TenVersion</string>
-    <string name="safe_btn_txt">안전  </string>
-    <string name="live_btn_txt">생명  </string>
-    <string name="etc_btn_txt">기타  </string>
+    <string name="safe_btn_txt">안전 리스트 </string>
+    <string name="live_btn_txt">생명 리스트 </string>
+    <string name="etc_btn_txt">기타 리스트 </string>
     <string name="setting_btn_txt">Setting  </string>
-    <string name="testdailog_btn_txt">test dialog </string>
 
     <!-- SafeListActivity.java -->
  	<string name="all_del_select_txt">전체선택</string>
@@ -22,7 +20,7 @@
     <!-- EtcListActivity.java -->
 
 
-    <!-- SettingListActivity.java -->
+    <!-- SettingActivity.java -->
     <string name="setting_wifi_txt">알람 Wi-Fi 선택</string>
     <string name="setting_wifi_summary_txt">사용 할  Wi-Fi 선택</string>
     <string name="setting_alarm_txt">알람 시간 설정</string>
@@ -35,6 +33,8 @@
     <string name="setting_help_summary_txt"></string>
     <string name="setting_version_txt">버전정보</string>
     <string name="setting_version_summary_txt"></string>
+
+
 
     <!-- TestDialogActivity.java -->
     <string name="test_dialog1_btn_txt">test dialog 1 </string>
@@ -56,7 +56,7 @@
     <item type="id" name="wifi_bssid"></item>
     
     <!-- CustomDialog.java -->
-    <!-- Fun List Dialog  -->
+    <!-- FunDialog List -->
     <string name="funlist_okbtn_txt">확인</string>
     <!-- Choose Wifi Dialog -->
     <string name="choose_wifi_cancebtn_txt">취소</string>

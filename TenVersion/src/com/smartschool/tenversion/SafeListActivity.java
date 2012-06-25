@@ -41,7 +41,7 @@ public class SafeListActivity extends Activity implements OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list);
+        setContentView(R.layout.safelist);
         
 		/**  UI  **/
         //String
@@ -85,7 +85,8 @@ public class SafeListActivity extends Activity implements OnClickListener{
 		}
     	mDBcursor.close();
     	
-		checkListAdapter = new CheckListAdapter(this,  R.layout.checklist_item_row, checkListItem, DEL_MODE,ALL_DEL_MODE); 
+//		checkListAdapter = new CheckListAdapter(this,  R.layout.checklist_item_row, checkListItem, DEL_MODE,ALL_DEL_MODE); 
+		checkListAdapter = new CheckListAdapter(this,  android.R.layout.simple_list_item_1, checkListItem, DEL_MODE,ALL_DEL_MODE); 
 		safeListView.setAdapter(checkListAdapter);
     }
     

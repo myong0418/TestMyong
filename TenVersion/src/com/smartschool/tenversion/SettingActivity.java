@@ -28,7 +28,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 	private static final String TAG ="SettingActivity";
 	/**  UI  **/
 	//String
-
+	public static String not_wifi_mode_str;
 	//set Button
 	public static LinearLayout wifiLayout = null;
 	public static Button wifiBtn = null;	
@@ -212,14 +212,13 @@ public class SettingActivity extends Activity implements OnClickListener{
 			Log.v(TAG, "=======================================\n");
 			for (int i = 0; i < mScanResult.size(); i++) {
 				ScanResult result = mScanResult.get(i);
-				Log.v(TAG, (i + 1) + ". SSID : " + result.SSID.toString()+ "\t\t RSSI : " + result.level + " dBm\n");
-				
-				Log.v(TAG, "frequency : "+result.frequency);
-				Log.v(TAG, "capabilities : "+result.capabilities);
-				Log.v(TAG, "describeContents : "+result.describeContents());
+//				Log.v(TAG, (i + 1) + ". SSID : " + result.SSID.toString()+ "\t\t RSSI : " + result.level + " dBm\n");			
+//				Log.v(TAG, "frequency : "+result.frequency);
+//				Log.v(TAG, "capabilities : "+result.capabilities);
+//				Log.v(TAG, "describeContents : "+result.describeContents());
 				String ssid  = result.SSID.toString();
 				String bssid = result.BSSID.toString();
-				String rssi = String.valueOf(result.level);        ////////int 
+				String rssi = String.valueOf(result.level); 
 				
 				wifiListItem.add(new WifiListProfile(ssid, bssid, rssi));
 			}
@@ -239,10 +238,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 	   	 Log.v(TAG,"[chooseWifi] ");
 		String ssid = item.getSSID();
 		String bssid = item.getBSSID();
-		String rssi = item.getRSSI();
-		Log.v(TAG, "ssid" + ssid);
-		Log.v(TAG, "bssid" + bssid);
-		Log.v(TAG, "rssi" + rssi);
+//		String rssi = item.getRSSI();
 		
 		wifiSummaryTV.setText(ssid);
 		setWifiSetting(ssid,bssid);
