@@ -142,7 +142,7 @@ public class WifiReceiver extends BroadcastReceiver{
 		Intent goIntent = new Intent(mContext,TenVersionActivity.class);
 		PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, goIntent,PendingIntent.FLAG_CANCEL_CURRENT);
 
-		Notification notification = new Notification(R.drawable.ic_launcher, "TenVersion",System.currentTimeMillis());
+		Notification notification = new Notification(R.drawable.goout, "TenVersion",System.currentTimeMillis());
 		notification.setLatestEventInfo(mContext, "TenVersion","TenVersion 에서 설정을 하실 수 있습니다.", pendingIntent);
 		notification.flags = Notification.FLAG_NO_CLEAR;
 		notiMgr.notify(0, notification);

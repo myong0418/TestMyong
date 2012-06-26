@@ -2,19 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="#F5F8C0">
+    <View 
+  		android:layout_width="fill_parent"
+		android:layout_height="3dip"  
+		android:background="@android:color/white"
+	/>
+    
 <!-- wifi -->
-   <LinearLayout
+   <RelativeLayout
 		android:id="@+id/wifi_layout"
 		android:layout_width="fill_parent"
 		android:layout_height="50dip"
-		android:orientation="horizontal"
+		android:background="#C9ED75"
+	
 		>
+	<ImageView 
+		android:id="@+id/wifi_image"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/wifi_full"
+	     />
 	<LinearLayout
-		android:layout_width="0dip"
+		android:layout_width="wrap_content"
 		android:layout_height="50dip"
 		android:orientation="vertical"
-		android:layout_weight="1"
+		android:layout_marginLeft="50dip"
 		>
 	<TextView
 		android:id="@+id/wifi_tv"
@@ -22,6 +36,7 @@
 		android:layout_height="wrap_content"
 		android:text="@string/setting_wifi_txt"
 		android:textSize="20sp"
+		android:textColor="#FF6954"
 		/>
 	<TextView
 		android:id="@+id/wifi_summary_tv"
@@ -29,15 +44,18 @@
 		android:layout_height="wrap_content"
 		android:text="@string/setting_wifi_summary_txt"
 		android:textSize="13sp"
+		android:textColor="#FF6954"
 		/>
 	</LinearLayout>
 	<Button
 		android:id="@+id/wifi_btn"
-		android:layout_width="0dip"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_weight="1"
+		android:background="@drawable/drop_down"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
 		/>
-	</LinearLayout>        
+	</RelativeLayout>        
 	
 	<View 
   		android:layout_width="fill_parent"
@@ -45,34 +63,52 @@
 		android:background="@android:color/white"
 	/>
 <!-- Alram -->
-   <LinearLayout
+   <RelativeLayout
 		android:id="@+id/alram_layout"
-		android:layout_width="fill_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="50dip"
-		android:orientation="horizontal"
-		>
+		android:background="#C9ED75"
+		
+		>	
+       	<ImageView 
+		android:id="@+id/alram_image"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/alram"
+	     />
 	<LinearLayout
-		android:layout_width="fill_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="50dip"
 		android:orientation="vertical"
-		android:layout_weight="1"
+		android:layout_marginLeft="50dip"
 		>
 	<TextView
 		android:id="@+id/alram_tv"
-		android:layout_width="fill_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/setting_alarm_txt"
 		android:textSize="20sp"
+		android:textColor="#FF6954"
 		/>
 	<TextView
 		android:id="@+id/alram_summary_tv"
-		android:layout_width="fill_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/setting_alarm_summary_txt"
 		android:textSize="13sp"
+		android:textColor="#FF6954"
 		/>
-	</LinearLayout>      
-	</LinearLayout>      
+	</LinearLayout> 
+	
+	<Button
+		android:id="@+id/alram_btn"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/drop_down2"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
+		/>
+	</RelativeLayout>      
    
    	<View 
   		android:layout_width="fill_parent"
@@ -81,17 +117,18 @@
 	/>
    
 <!-- sound -->
-   <LinearLayout
+   <RelativeLayout
 		android:id="@+id/sound_layout"
 		android:layout_width="fill_parent"
 		android:layout_height="50dip"
 		android:orientation="horizontal"
+		android:background="#FFD280"
 		>
 	<LinearLayout
-		android:layout_width="0dip"
+		android:layout_width="wrap_content"
 		android:layout_height="50dip"
 		android:orientation="vertical"
-		android:layout_weight="1"
+		android:layout_marginLeft="50dip"
 		>
 	<TextView
 		android:id="@+id/sound_tv"
@@ -99,6 +136,7 @@
 		android:layout_height="wrap_content"
 		android:text="@string/setting_sound_txt"
 		android:textSize="20sp"
+		android:textColor="#FF6954"
 		/>
 	<TextView
 		android:id="@+id/sound_summary_tv"
@@ -106,6 +144,7 @@
 		android:layout_height="wrap_content"
 		android:text="@string/setting_sound_summary_txt"
 		android:textSize="13sp"
+		android:textColor="#FF6954"
 		/>
 	</LinearLayout>
 	<ToggleButton
@@ -114,7 +153,7 @@
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
 		/>
-	</LinearLayout>
+	</RelativeLayout>
 	<View 
   		android:layout_width="fill_parent"
 		android:layout_height="3dip"  
@@ -123,17 +162,18 @@
 	
 	
 <!-- vibrate -->
-   <LinearLayout
+   <RelativeLayout
 		android:id="@+id/vibrate_layout"
 		android:layout_width="fill_parent"
 		android:layout_height="50dip"
 		android:orientation="horizontal"
+		android:background="#FFD280"
 		>
 	<LinearLayout
-		android:layout_width="0dip"
-		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_height="50dip"
 		android:orientation="vertical"
-		android:layout_weight="1"
+		android:layout_marginLeft="50dip"
 		>
 	<TextView
 		android:id="@+id/vibrate_tv"
@@ -141,6 +181,7 @@
 		android:layout_height="wrap_content"
 		android:text="@string/setting_vibrate_txt"
 		android:textSize="20sp"
+		android:textColor="#FF6954"
 		/>
 	<TextView
 		android:id="@+id/vibrate_summary_tv"
@@ -148,6 +189,7 @@
 		android:layout_height="wrap_content"
 		android:text="@string/setting_vibrate_summary_txt"
 		android:textSize="13sp"
+		android:textColor="#FF6954"
 		/>
 	</LinearLayout>
 	<ToggleButton
@@ -156,7 +198,7 @@
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
 		/>
-	</LinearLayout>    
+	</RelativeLayout>    
 	
  	<View 
   		android:layout_width="fill_parent"
@@ -165,17 +207,18 @@
 	/>
 	
 <!-- Help -->
-   <LinearLayout
+   <RelativeLayout
 		android:id="@+id/help_layout"
 		android:layout_width="fill_parent"
 		android:layout_height="50dip"
 		android:orientation="horizontal"
+		android:background="#C9ED75"
 		>
 	<LinearLayout
-		android:layout_width="0dip"
+		android:layout_width="wrap_content"
 		android:layout_height="50dip"
 		android:orientation="vertical"
-		android:layout_weight="1"
+		android:layout_marginLeft="50dip"
 		>
 	<TextView
 		android:id="@+id/help_tv"
@@ -183,6 +226,7 @@
 		android:layout_height="wrap_content"
 		android:text="@string/setting_help_txt"
 		android:textSize="20sp"
+		android:textColor="#FF6954"
 		/>
 	<TextView
 		android:id="@+id/help_summary_tv"
@@ -190,9 +234,10 @@
 		android:layout_height="wrap_content"
 		android:text="@string/setting_help_summary_txt"
 		android:textSize="13sp"
+		android:textColor="#FF6954"
 		/>
 	</LinearLayout>
-	</LinearLayout>    
+	</RelativeLayout>    
 	
 	<View 
   		android:layout_width="fill_parent"
@@ -201,16 +246,17 @@
 	/>
    
 <!-- version Info -->
-   <LinearLayout
+   <RelativeLayout
 		android:id="@+id/version_layout"
 		android:layout_width="fill_parent"
 		android:layout_height="50dip"
-		android:orientation="horizontal">
+		android:orientation="horizontal"
+		android:background="#FFD280">
 	<LinearLayout
-		android:layout_width="0dip"
+		android:layout_width="wrap_content"
 		android:layout_height="50dip"
 		android:orientation="vertical"
-		android:layout_weight="1"
+		android:layout_marginLeft="50dip"
 		>
 	<TextView
 		android:id="@+id/version_tv"
@@ -218,6 +264,7 @@
 		android:layout_height="wrap_content"
 		android:text="@string/setting_version_txt"
 		android:textSize="20sp"
+		android:textColor="#FF6954"
 		/>
 	<TextView
 		android:id="@+id/version_summary_tv"
@@ -225,9 +272,10 @@
 		android:layout_height="wrap_content"
 		android:text="@string/setting_version_summary_txt"
 		android:textSize="13sp"
+		android:textColor="#FF6954"
 		/>
 	</LinearLayout>
-	</LinearLayout> 
+	</RelativeLayout> 
    	<View 
   		android:layout_width="fill_parent"
 		android:layout_height="3dip"  

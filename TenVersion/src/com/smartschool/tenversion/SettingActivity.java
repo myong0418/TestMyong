@@ -19,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 	//String
 	public static String not_wifi_mode_str;
 	//set Button
-	public static LinearLayout wifiLayout = null;
+	public static RelativeLayout wifiLayout = null;
 	public static Button wifiBtn = null;	
 	public static TextView wifiTV = null;
 	public static TextView wifiSummaryTV = null;
@@ -53,7 +54,7 @@ public class SettingActivity extends Activity implements OnClickListener{
         
 		/**  UI  **/
 		//wifi layout
-       wifiLayout = (LinearLayout)findViewById(R.id.wifi_layout);
+       wifiLayout = (RelativeLayout)findViewById(R.id.wifi_layout);
 //        wifiLayout.setOnClickListener(this);
         
         wifiTV = (TextView)findViewById(R.id.wifi_tv);
@@ -62,13 +63,13 @@ public class SettingActivity extends Activity implements OnClickListener{
         wifiBtn.setOnClickListener(this);
                
         //alram layout
-        LinearLayout alramLayout =(LinearLayout)findViewById(R.id.alram_layout);
+        RelativeLayout alramLayout =(RelativeLayout)findViewById(R.id.alram_layout);
         alramLayout.setOnClickListener(this);
         
         TextView alramTV =(TextView)findViewById(R.id.alram_tv);
         
         //sound layout
-        LinearLayout soundLayout =(LinearLayout)findViewById(R.id.sound_layout);
+        RelativeLayout soundLayout =(RelativeLayout)findViewById(R.id.sound_layout);
         soundLayout.setOnClickListener(this);
         
         TextView soundTV =(TextView)findViewById(R.id.sound_tv);
@@ -76,7 +77,7 @@ public class SettingActivity extends Activity implements OnClickListener{
         soundTB.setOnClickListener(this);
         
         //vibrate layout
-        LinearLayout vibrateLayout =(LinearLayout)findViewById(R.id.vibrate_layout);
+        RelativeLayout vibrateLayout =(RelativeLayout)findViewById(R.id.vibrate_layout);
         vibrateLayout.setOnClickListener(this);
         
         TextView vibrateTV =(TextView)findViewById(R.id.vibrate_tv);
@@ -84,13 +85,13 @@ public class SettingActivity extends Activity implements OnClickListener{
         vibrateTB.setOnClickListener(this);
         
         //help layout
-        LinearLayout helpLayout =(LinearLayout)findViewById(R.id.help_layout);
+        RelativeLayout helpLayout =(RelativeLayout)findViewById(R.id.help_layout);
         helpLayout.setOnClickListener(this);
         
         TextView helpTV =(TextView)findViewById(R.id.help_tv);
         
         //version layout
-        LinearLayout versionLayout =(LinearLayout)findViewById(R.id.version_layout);
+        RelativeLayout versionLayout =(RelativeLayout)findViewById(R.id.version_layout);
         versionLayout.setOnClickListener(this);
         
         TextView versionTV =(TextView)findViewById(R.id.version_tv);
