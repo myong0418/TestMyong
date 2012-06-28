@@ -34,6 +34,8 @@
     <string name="setting_version_txt">버전정보</string>
     <string name="setting_version_summary_txt"></string>
 
+    <string name="not_wifi_ssid">사용 할 wifi를 선택해 주세요.</string>
+    <string name="not_setting">설정안함</string>
 
 
     <!-- TestDialogActivity.java -->

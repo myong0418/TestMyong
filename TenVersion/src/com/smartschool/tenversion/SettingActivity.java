@@ -32,16 +32,21 @@ public class SettingActivity extends Activity implements OnClickListener{
 	public static String not_wifi_mode_str;
 	//set Button
 	public static RelativeLayout wifiLayout = null;
+	public static RelativeLayout wifiLayout_disable = null;
 	public static Button wifiBtn = null;	
 	public static TextView wifiTV = null;
 	public static TextView wifiSummaryTV = null;
+	
+	
+	public static ToggleButton soundTB = null;
+	public static ToggleButton vibrateTB = null;
 
 	//set shared Preference
 	public static final String KEY_WIFI_MODE = "wifi_mode";
 	public static final String KEY_WIFISSID = "wifi_ssid";
 	public static final String KEY_WIFIBSSID = "wifi_bssid";
 
-	public static final String KEY_ALARM = "alarm_mode";
+	public static final String KEY_SOUND = "sound_mode";
 	public static final String KEY_VIBRATOR = "vibrator_mode";
 	
 	//dialog
@@ -54,7 +59,8 @@ public class SettingActivity extends Activity implements OnClickListener{
         
 		/**  UI  **/
 		//wifi layout
-       wifiLayout = (RelativeLayout)findViewById(R.id.wifi_layout);
+        wifiLayout = (RelativeLayout)findViewById(R.id.wifi_layout);
+        wifiLayout_disable = (RelativeLayout)findViewById(R.id.wifi_layout_disable);
 //        wifiLayout.setOnClickListener(this);
         
         wifiTV = (TextView)findViewById(R.id.wifi_tv);
@@ -73,16 +79,20 @@ public class SettingActivity extends Activity implements OnClickListener{
         soundLayout.setOnClickListener(this);
         
         TextView soundTV =(TextView)findViewById(R.id.sound_tv);
-        ToggleButton soundTB= (ToggleButton)findViewById(R.id.sound_togglebtn);
+        soundTB= (ToggleButton)findViewById(R.id.sound_togglebtn);
         soundTB.setOnClickListener(this);
-        
+        Boolean soundState = WifiReceiver.getBooleanPrefence(this, KEY_SOUND);
+		soundTB.setChecked(soundState);
+		
         //vibrate layout
         RelativeLayout vibrateLayout =(RelativeLayout)findViewById(R.id.vibrate_layout);
         vibrateLayout.setOnClickListener(this);
         
         TextView vibrateTV =(TextView)findViewById(R.id.vibrate_tv);
-        ToggleButton vibrateTB= (ToggleButton)findViewById(R.id.vibrate_togglebtn);
+        vibrateTB= (ToggleButton)findViewById(R.id.vibrate_togglebtn);
         vibrateTB.setOnClickListener(this);
+        Boolean vibrateState = WifiReceiver.getBooleanPrefence(this, KEY_VIBRATOR);
+        vibrateTB.setChecked(vibrateState);
         
         //help layout
         RelativeLayout helpLayout =(RelativeLayout)findViewById(R.id.help_layout);
@@ -119,6 +129,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.alram_layout:
 			Log.v(TAG,"onclick() alram_layout ");
+			setAlramDialog();
 			break;
 		case R.id.sound_layout:
 			Log.v(TAG,"onclick() sound_layout ");
@@ -138,9 +149,26 @@ public class SettingActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.sound_togglebtn:
 			Log.v(TAG,"onclick() sound_togglebtn ");
+			Boolean soundState = WifiReceiver.getBooleanPrefence(this, KEY_SOUND);
+			if(soundState){
+				soundTB.setChecked(false);
+				WifiReceiver.setBooleanPrefence(this,KEY_SOUND, false);
+			}else{
+				soundTB.setChecked(true);
+				WifiReceiver.setBooleanPrefence(this,KEY_SOUND, true);
+			}
+			
 			break;
 		case R.id.vibrate_togglebtn:
 			Log.v(TAG,"onclick() vibrate_togglebtn ");
+			Boolean vibrateState = WifiReceiver.getBooleanPrefence(this, KEY_VIBRATOR);
+			if(vibrateState){
+				vibrateTB.setChecked(false);
+				WifiReceiver.setBooleanPrefence(this,KEY_VIBRATOR, false);
+			}else{
+				vibrateTB.setChecked(true);
+				WifiReceiver.setBooleanPrefence(this,KEY_VIBRATOR, true);
+			}
 			break;
 //		case R.id.addBtn:
 //
@@ -179,14 +207,16 @@ public class SettingActivity extends Activity implements OnClickListener{
 		WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 		List<ScanResult> mScanResult = wifiManager.getScanResults(); // ScanResult
 		if (wifiManager == null || mScanResult == null) {
-			Toast.makeText(this, "연결할 Wi-Fi가 없습니다.", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "선택 할  Wi-Fi가 없습니다.", Toast.LENGTH_LONG).show();
 			wifiLayout.setEnabled(false);
+			wifiLayout_disable.setVisibility(View.VISIBLE);
 			for (int i = 0; i < wifiLayout.getChildCount(); i++) {
 				View view = wifiLayout.getChildAt(i);
 				view.setEnabled(false);  //child view
 			}
 		} else {
 			wifiLayout.setEnabled(true);
+			wifiLayout_disable.setVisibility(View.GONE);
 			for (int i = 0; i < wifiLayout.getChildCount(); i++) {
 				View view = wifiLayout.getChildAt(i);
 				view.setEnabled(true); //child view
@@ -194,7 +224,12 @@ public class SettingActivity extends Activity implements OnClickListener{
 		}
 
         String wifiSSID = WifiReceiver.getWifiSettingSSID(this);
-        wifiSummaryTV.setText(wifiSSID);
+        if(wifiSSID == null){
+        	  wifiSummaryTV.setText(getResources().getText(R.string.not_wifi_ssid));
+        }else{
+        	  wifiSummaryTV.setText(wifiSSID);
+        }
+       
 //        String wifiBSSID = WifiReceiver.getWifiSettingBSSID(this);
 //        wifiSummaryTV.setText(wifiBSSID);	
 	}
@@ -207,7 +242,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 		List<ScanResult> mScanResult = wifiManager.getScanResults(); // ScanResult
 			
 		ArrayList<WifiListProfile> wifiListItem = new ArrayList<WifiListProfile>(); 
-		wifiListItem.add(new WifiListProfile("설정안함", "",""));
+		wifiListItem.add(new WifiListProfile(context.getResources().getText(R.string.not_setting).toString(), "",""));
 		
 		if (wifiManager != null && mScanResult != null) {
 			Log.v(TAG, "=======================================\n");
@@ -245,8 +280,22 @@ public class SettingActivity extends Activity implements OnClickListener{
 		setWifiSetting(ssid,bssid);
 		
 		WifiReceiver.compairWifiConnectionMode(this);
-		
-  }
+    }
+    public void setAlramDialog(){ 
+    	Log.v(TAG,"[setAlramDialog]");
+    	CustomDialog customDialog =  new CustomDialog(this, R.style.Dialog);   
+    	customDialog.alarmDialog();
+    	customDialog.show();
+    }
+    public  void  setAlram(WifiListProfile item){
+	   	 Log.v(TAG,"[setAlram] ");
+//		String ssid = item.getSSID();
+//		String bssid = item.getBSSID();
+//		wifiSummaryTV.setText(ssid);
+//		setWifiSetting(ssid,bssid);
+//		WifiReceiver.compairWifiConnectionMode(this);
+    }
+    
 
 	// set wifi sharedPreference
 	public void setWifiSetting(String wifiSSID, String wifiBSSID) {

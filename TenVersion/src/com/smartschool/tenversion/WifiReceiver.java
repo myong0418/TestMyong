@@ -29,7 +29,7 @@ public class WifiReceiver extends BroadcastReceiver{
 	public static final String KEY_WIFISSID = "wifi_ssid";
 	public static final String KEY_WIFIBSSID = "wifi_bssid";
 	//hw Key
-	public static final String KEY_ALARM = "alarm_mode";
+	public static final String KEY_SOUND = "sound_mode";
 	public static final String KEY_VIBRATE = "vibrator_mode";
 	
 	//wifi
@@ -37,11 +37,12 @@ public class WifiReceiver extends BroadcastReceiver{
 	private static NotificationManager notiMgr = null;
 	private List<ScanResult> mScanResult; // ScanResult List
 	//private static Context mContext;
-	
 	//wifi state
 	public static  boolean WifiState = false;
-	
+	//notification state
+	public static final int WifiNotiState = 10;
 	//alarm
+	public static String ALARM_ACTION = "com.smartschool.tenversion.ALARM_ACTION";
 	private static MediaPlayer mplay = null;
 	
 	//vibrator
@@ -49,14 +50,20 @@ public class WifiReceiver extends BroadcastReceiver{
 	
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.d(TAG, "onReceive() context ::" + context);
-
+		Log.v(TAG, "onReceive() context ::" + context);
+		Log.v(TAG, "onReceive() intent ::" + intent);
+		
 		//mContext = context;
-
 		String action = intent.getAction();
+		
+		if(action.equals(ALARM_ACTION)){
+			Log.d(TAG, "ALARM_ACTION ");
+			//alarm
+			ringAlam(context);
 
+		}
 		// 네트웍에 변경이 일어났을때 발생하는 부분
-		if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
+		else if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
 			Log.d(TAG, "CONNECTIVITY_ACTION");
 
 			ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -72,6 +79,7 @@ public class WifiReceiver extends BroadcastReceiver{
 					//enable layout 
 					if (SettingActivity.wifiLayout != null) {
 						SettingActivity.wifiLayout.setEnabled(true);
+						SettingActivity.wifiLayout_disable.setVisibility(View.GONE);
 						for ( int i = 0; i < SettingActivity.wifiLayout.getChildCount();  i++ ){ 
 						    View view = SettingActivity.wifiLayout.getChildAt(i); 
 						    view.setEnabled(true);
@@ -89,17 +97,19 @@ public class WifiReceiver extends BroadcastReceiver{
 						Log.d(TAG, "noti.start");
 
 						// set Notification
-						setNotification(context);
+						setNotification(context,WifiNotiState);
 
 						WifiState = true;
 
 					} else { 													// disconnected wifi mode
 						Log.d(TAG, "noti.cancel");
 						// cancel notification
-						cancleNotification(context);
+						cancleNotification(context,WifiNotiState);
 
 						// alarm
-						ringAlam(context);
+						if (WifiState) {
+							ringAlam(context);
+						}WifiState = false;
 					}
 
 				} else if (networkType == ConnectivityManager.TYPE_MOBILE) {	// disconnected wifi mode
@@ -109,6 +119,7 @@ public class WifiReceiver extends BroadcastReceiver{
 					//disable layout 
 					if (SettingActivity.wifiLayout != null) {
 						SettingActivity.wifiLayout.setEnabled(false);
+						SettingActivity.wifiLayout_disable.setVisibility(View.VISIBLE);
 						for ( int i = 0; i < SettingActivity.wifiLayout.getChildCount();  i++ ){ 
 						    View view = SettingActivity.wifiLayout.getChildAt(i); 
 						    view.setEnabled(false);
@@ -117,16 +128,21 @@ public class WifiReceiver extends BroadcastReceiver{
 					
 					
 					// cancel notification
-					cancleNotification(context);
+					cancleNotification(context,WifiNotiState);
 					// alarm
-					ringAlam(context);
+					if (WifiState) {
+						ringAlam(context);
+					}WifiState = false;
 				}
 			} catch (Exception e) {
 				Log.e(TAG, "Exception e ::" + e);
 				Log.e(TAG, "failed wifi ");
 				// cancel notification
-				cancleNotification(context);
+				cancleNotification(context,WifiNotiState);
 			}
+		} else if (action.equals(WifiManager.WIFI_STATE_CHANGED_ACTION)) {
+			Log.d(TAG, "WIFI_STATE_CHANGED_ACTION");
+		
 		} else if (action.equals(WifiManager.WIFI_STATE_CHANGED_ACTION)) {
 			Log.d(TAG, "WIFI_STATE_CHANGED_ACTION");
 		}
@@ -137,20 +153,26 @@ public class WifiReceiver extends BroadcastReceiver{
 	
 	
 /**Notification START**/	
-	public static void setNotification(Context mContext){
+	public static void setNotification(Context mContext, int notiState){
+		int notiImageIcon = 0;
+		if(notiState == WifiNotiState){
+			notiImageIcon = R.drawable.goout;
+		}else {//if(notiState == alarmNotiState){
+			notiImageIcon = R.drawable.ic_launcher;
+		}
 		notiMgr = (NotificationManager) mContext.getSystemService(mContext.NOTIFICATION_SERVICE);
 		Intent goIntent = new Intent(mContext,TenVersionActivity.class);
-		PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, goIntent,PendingIntent.FLAG_CANCEL_CURRENT);
+		PendingIntent pendingIntent = PendingIntent.getActivity(mContext, notiState, goIntent,PendingIntent.FLAG_CANCEL_CURRENT);
 
-		Notification notification = new Notification(R.drawable.goout, "TenVersion",System.currentTimeMillis());
+		Notification notification = new Notification(notiImageIcon, "TenVersion",System.currentTimeMillis());
 		notification.setLatestEventInfo(mContext, "TenVersion","TenVersion 에서 설정을 하실 수 있습니다.", pendingIntent);
 		notification.flags = Notification.FLAG_NO_CLEAR;
-		notiMgr.notify(0, notification);
+		notiMgr.notify(notiState, notification);
 	}
 	
-	public static void cancleNotification(Context context){
+	public static void cancleNotification(Context context, int notiState){
 		notiMgr = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
-		notiMgr.cancel(0);
+		notiMgr.cancel(notiState);
 	}
 /**Notification END**/
 	
@@ -159,27 +181,7 @@ public class WifiReceiver extends BroadcastReceiver{
 /**SOUND START**/
 	//ringing alarm
 	public void ringAlam(Context context) {
-		Log.v(TAG, "ringAlam()");
-		if (WifiState) {
-			// set alarm
-//			int SECS = 1000;
-//			int MINS = 60 * SECS;
-//		//	Calendar cal = Calendar.getInstance();
-//			Intent goIntent = new Intent(mContext, alarmDialogActivity.class);
-//			PendingIntent pi = PendingIntent.getActivity(mContext, 0, goIntent,PendingIntent.FLAG_CANCEL_CURRENT);
-//			AlarmManager alarms = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-//			alarms.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),10 * MINS, pi);
-
-			
-			 // start flipperView
-//			 Intent intent = new Intent(mContext,FlipperView.class);
-//			 mContext.startActivity(intent);
-//			 
-//			 Intent i = new Intent("com.smartschool.tenversion", "com.smartschool.tenversion.FlipperView");
-//			 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//			 context.startActivity(i);
-//			 
-			
+		Log.v(TAG, "ringAlam()");			
 			 Intent intent = new Intent();
 			 intent.setClassName("com.smartschool.tenversion", "com.smartschool.tenversion.FlipperView");
 			 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -190,15 +192,12 @@ public class WifiReceiver extends BroadcastReceiver{
 			 
 			 //start alarm
 			 startSound(context, R.raw.dingdong);     	// ..............add select sound
-			
-
-		}
-		WifiState = false;
+		
 	}
 	
 	//set vibrate
 	public static void startVibrate(Context mContext){
-		  boolean vibrateState = WifiReceiver.getCheckBoxPrefence(mContext,KEY_VIBRATE);
+		  boolean vibrateState = WifiReceiver.getBooleanPrefence(mContext,KEY_VIBRATE);
 		  if(vibrateState){
 			 Vibrator vibrator = (Vibrator)mContext.getSystemService(Context.VIBRATOR_SERVICE);
 			 vibrator.vibrate(VIBRATE_TIME);  //2sec
@@ -207,7 +206,7 @@ public class WifiReceiver extends BroadcastReceiver{
 	//set Sound
 	public void startSound(Context context, int id) {
 		Log.v(TAG, "startSound()");
-		boolean alramState = WifiReceiver.getCheckBoxPrefence(context, KEY_ALARM);
+		boolean alramState = WifiReceiver.getBooleanPrefence(context, KEY_SOUND);
 		if (alramState) {
 
 			try {
@@ -313,17 +312,17 @@ public class WifiReceiver extends BroadcastReceiver{
 		Log.e(TAG, "connectedWifi::" + connectedWifi + ", wifimode"+ wifimode);
 		if (connectedWifi == null || wifimode == null) {
 			Log.e(TAG, "failed wifi info");
-			cancleNotification(context);
+			cancleNotification(context,WifiNotiState);
 			Toast.makeText(context, "failed wifi info", Toast.LENGTH_SHORT);
 		}
 
 		if (connectedWifi != null && connectedWifi.equals(wifimode)) { // same  connected wifi mode
 			Log.d(TAG, "noti.start");
 			// set Notification
-			setNotification(context);
+			setNotification(context,WifiNotiState);
 			WifiState = true;
 		} else {
-			cancleNotification(context);
+			cancleNotification(context,WifiNotiState);
 		}
 	}
 	
@@ -359,7 +358,7 @@ public class WifiReceiver extends BroadcastReceiver{
 	
 	
 /**checkbox sharedPreference START**/
-	public static void setCheckBoxPrefence(Context mContext, String key, boolean check){
+	public static void setBooleanPrefence(Context mContext, String key, boolean check){
 		SharedPreferences sharedPrefs = mContext.getSharedPreferences(key,Context.MODE_PRIVATE);
 		Editor editor = sharedPrefs.edit();
         
@@ -367,7 +366,7 @@ public class WifiReceiver extends BroadcastReceiver{
         editor.commit();
 	}
 	
-	public static boolean getCheckBoxPrefence(Context mContext,String key){
+	public static boolean getBooleanPrefence(Context mContext,String key){
 		SharedPreferences sharedPrefs = mContext.getSharedPreferences(key,Context.MODE_PRIVATE);
 		boolean checkBoxState = sharedPrefs.getBoolean(key, false);
 		return checkBoxState;

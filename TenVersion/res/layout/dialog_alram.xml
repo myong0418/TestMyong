@@ -6,11 +6,11 @@
     android:orientation="vertical" >
 
     <!-- Date -->
-
+<!-- 
     <DatePicker
         android:id="@+id/date_picker"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" /> -->
 
     <!-- Time -->
 
@@ -28,21 +28,15 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/set"
+            android:id="@+id/alarm_set_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set" />
 
         <Button
-            android:id="@+id/reset"
+            android:id="@+id/alarm_reset_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="reset" />
+            android:text="설정안함" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-
 </LinearLayout>

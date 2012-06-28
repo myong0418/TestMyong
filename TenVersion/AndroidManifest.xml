@@ -46,8 +46,10 @@
         <activity android:name=".PreviewListActivity"
             		android:theme="@android:style/Theme.Translucent" />
 
-		<receiver android:name=".WifiReceiver" >
+		<receiver android:name=".WifiReceiver" 
+		    	>
             <intent-filter>
+                <action android:name="com.smartschool.tenversion.ALARM_ACTION"/>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="android.net.wifi.STATE_CHANGE"/> 
 

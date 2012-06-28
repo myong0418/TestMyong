@@ -11,6 +11,10 @@
 	/>
     
 <!-- wifi -->
+	<FrameLayout 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+	>
    <RelativeLayout
 		android:id="@+id/wifi_layout"
 		android:layout_width="fill_parent"
@@ -56,13 +60,25 @@
 		android:layout_centerVertical="true"
 		/>
 	</RelativeLayout>        
-	
+	<RelativeLayout
+		android:id="@+id/wifi_layout_disable"
+		android:layout_width="fill_parent"
+		android:layout_height="50dip"
+		android:background="#AAFFFFFF"
+		android:visibility="gone"
+		/>
+   
+</FrameLayout>
 	<View 
   		android:layout_width="fill_parent"
 		android:layout_height="3dip"  
 		android:background="@android:color/white"
 	/>
 <!-- Alram -->
+	<FrameLayout 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+	>
    <RelativeLayout
 		android:id="@+id/alram_layout"
 		android:layout_width="wrap_content"
@@ -109,7 +125,15 @@
 		android:layout_centerVertical="true"
 		/>
 	</RelativeLayout>      
+	<RelativeLayout
+		android:id="@+id/alram_layout_disable"
+		android:layout_width="fill_parent"
+		android:layout_height="50dip"
+		android:background="#AAFFFFFF"
+		android:visibility="gone"
+		/>
    
+</FrameLayout>   
    	<View 
   		android:layout_width="fill_parent"
 		android:layout_height="3dip"  
@@ -124,6 +148,11 @@
 		android:orientation="horizontal"
 		android:background="#FFD280"
 		>
+	<ImageView 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/alram"
+	     />
 	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="50dip"
@@ -149,9 +178,10 @@
 	</LinearLayout>
 	<ToggleButton
 		android:id="@+id/sound_togglebtn"
-		android:layout_width="0dip"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_weight="1"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
 		/>
 	</RelativeLayout>
 	<View 
@@ -169,6 +199,11 @@
 		android:orientation="horizontal"
 		android:background="#FFD280"
 		>
+	 <ImageView 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/alram"
+	     />
 	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="50dip"
@@ -194,9 +229,10 @@
 	</LinearLayout>
 	<ToggleButton
 		android:id="@+id/vibrate_togglebtn"
-		android:layout_width="0dip"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_weight="1"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
 		/>
 	</RelativeLayout>    
 	
@@ -214,6 +250,11 @@
 		android:orientation="horizontal"
 		android:background="#C9ED75"
 		>
+	<ImageView 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/alram"
+	     />
 	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="50dip"
@@ -252,6 +293,11 @@
 		android:layout_height="50dip"
 		android:orientation="horizontal"
 		android:background="#FFD280">
+	<ImageView 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/alram"
+	     />
 	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="50dip"
