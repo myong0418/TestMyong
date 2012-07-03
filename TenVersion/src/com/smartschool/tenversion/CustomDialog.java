@@ -207,7 +207,7 @@ public class CustomDialog extends Dialog implements View.OnClickListener,
 	
 	}
 	static int mAlarmCode = 2030;
-	public static void registerAlarm(Context context, int hour,int minute) {
+	public  void registerAlarm(Context context, int hour,int minute) {
 		Log.v(TAG, "registerAlarm hour :: "+hour+"   minute::"+minute);
 		PendingIntent padingIntent_Alarm = PendingIntent.getBroadcast(context, mAlarmCode,new Intent(WifiReceiver.ALARM_ACTION), 0);
 		AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -228,6 +228,7 @@ public class CustomDialog extends Dialog implements View.OnClickListener,
 		Log.e(TAG, "mCalendar getHours 2:: "+mCalendar.getTime().getHours());
 		
 		manager.setRepeating(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY, padingIntent_Alarm);
+		((SettingActivity) mContext).setAlram(mCalendar.getTime().getHours(),mCalendar.getTime().getMinutes());
 	}
 	public static void stopAlarm(Context context) {
 		AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);

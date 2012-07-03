@@ -301,9 +301,9 @@ public class SettingActivity extends Activity implements OnClickListener{
     	customDialog.alarmDialog();
     	customDialog.show();
     }
-    public  void  setAlram(String time){
+    public  void  setAlram(int hour, int min){//String hour, String min){
 	   	 Log.v(TAG,"[setAlram] ");
-	   	 alarmSummaryTV.setText("");
+	   	 alarmSummaryTV.setText(hour+"½Ã  "+min+"ºÐ");
     }
     
 
