@@ -8,31 +8,18 @@
         android:id="@+id/view_flipper"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="center" >
-    </ViewFlipper>
-        
-    <Button
-        android:id="@+id/left_Btn"
-        android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Left" />
+        android:layout_centerInParent="true" 
+    />
 
-    <Button
-        android:id="@+id/right_Btn"
+    <TextView
+        android:id="@+id/arrow_txt"
         android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Right" />
-
-    <Button
-        android:id="@+id/skip_Btn"
-        android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="SKIP" />
+        android:layout_alignParentTop="true"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:background="@android:color/darker_gray"
+        android:text="&lt;&lt;&lt;화면을 좌우로 움직이세요&gt;&gt;&gt;" />
 
 </RelativeLayout>

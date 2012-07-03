@@ -1,4 +1,4 @@
-﻿package com.smartschool.tenversion;
+package com.smartschool.tenversion;
 
 import java.util.ArrayList;
 import android.content.Context;
@@ -83,9 +83,14 @@ public class CheckListAdapter extends ArrayAdapter<CheckListProfile> implements 
 
 		// set background
 		if (position % 2 == 0) {
-			holder.mRLayout.setBackgroundResource(R.drawable.panal_2);
+//			holder.mRLayout.setBackgroundResource(R.drawable.panal_2);
+			holder.mRLayout.setBackgroundColor(0xFFC9ED75);
+			holder.mContents.setTextColor(0xFF1B6B18);
+			
 		} else {
-			holder.mRLayout.setBackgroundResource(R.drawable.panal_1);
+//			holder.mRLayout.setBackgroundResource(R.drawable.panal_1);
+			holder.mRLayout.setBackgroundColor(0xFFFFD280);
+			holder.mContents.setTextColor(0xFFFF6954);
 		}
 
 		CheckListProfile item = checkListProfileList.get(position);

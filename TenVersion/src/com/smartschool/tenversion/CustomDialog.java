@@ -3,6 +3,7 @@ package com.smartschool.tenversion;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.SystemClock;
@@ -90,7 +92,7 @@ public class CustomDialog extends Dialog implements View.OnClickListener,
 	public void modifyListDialog(int mode, String contents) {
 		WindowManager.LayoutParams lpWindow = new WindowManager.LayoutParams();
 		lpWindow.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-		lpWindow.dimAmount = 0.75f;
+		lpWindow.dimAmount = 0.75f;	
 		getWindow().setAttributes(lpWindow);
 
 		MODE = mode;
@@ -157,8 +159,7 @@ public class CustomDialog extends Dialog implements View.OnClickListener,
 
 		// ArrayList<WifiListProfile> wifiListItem = new
 		// ArrayList<WifiListProfile>();
-		WifiListAdapter wifiListAdapter = new WifiListAdapter(mContext,
-				R.layout.wifilist_item_row, wifiListItem);
+		WifiListAdapter wifiListAdapter = new WifiListAdapter(mContext,R.layout.wifilist_item_row, wifiListItem);
 		Log.v(TAG, "wifiListAdapter ::" + wifiListAdapter);
 		chooseWifiListview.setAdapter(wifiListAdapter);
 		chooseWifiListview.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -185,7 +186,7 @@ public class CustomDialog extends Dialog implements View.OnClickListener,
 		lpWindow.dimAmount = 0.75f;
 		getWindow().setAttributes(lpWindow);
 
-		setContentView(R.layout.dialog_alram);
+		setContentView(R.layout.dialog_alarm);
 		Calendar mCalendar = Calendar.getInstance();
 	
 		// 일시 설정 클래스로 현재 시각을 설정
@@ -194,6 +195,7 @@ public class CustomDialog extends Dialog implements View.OnClickListener,
 		mTime = (TimePicker) findViewById(R.id.time_picker);
 		mTime.setCurrentHour(mCalendar.get(Calendar.HOUR_OF_DAY));
 		mTime.setCurrentMinute(mCalendar.get(Calendar.MINUTE));
+//		mTime.setOnTimeChangedListener(this);
 		Log.v(TAG, mCalendar.getTime().toString());			
 				
 		// 셋 버튼, 리셋버튼의 리스너를 등록
@@ -206,16 +208,25 @@ public class CustomDialog extends Dialog implements View.OnClickListener,
 	}
 	static int mAlarmCode = 2030;
 	public static void registerAlarm(Context context, int hour,int minute) {
-		Log.e(TAG, "registerAlarm hour :: "+hour+"   minute::"+minute);
+		Log.v(TAG, "registerAlarm hour :: "+hour+"   minute::"+minute);
 		PendingIntent padingIntent_Alarm = PendingIntent.getBroadcast(context, mAlarmCode,new Intent(WifiReceiver.ALARM_ACTION), 0);
 		AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		Calendar mCalendar = Calendar.getInstance();
 		mCalendar.setTimeInMillis(System.currentTimeMillis());
+		
+		int CurreuntHour = mCalendar.getTime().getHours();
+		if(CurreuntHour> hour ||( CurreuntHour==hour && mCalendar.getTime().getMinutes()>minute) ){
+			mCalendar.add(Calendar.DATE, 1);
+		}
+		
+		
 		mCalendar.set(Calendar.HOUR_OF_DAY, hour);
 		mCalendar.set(Calendar.MINUTE, minute);
 		mCalendar.set(Calendar.SECOND,0);
 		mCalendar.set(Calendar.MILLISECOND,0);
 		Log.e(TAG, "mCalendar getTime :: "+mCalendar.getTime().toString());
+		Log.e(TAG, "mCalendar getHours 2:: "+mCalendar.getTime().getHours());
+		
 		manager.setRepeating(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY, padingIntent_Alarm);
 	}
 	public static void stopAlarm(Context context) {

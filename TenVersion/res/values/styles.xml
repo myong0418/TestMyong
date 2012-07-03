@@ -36,30 +36,6 @@
 	    <item name="android:shadowDy">1</item>
 	    <item name="android:shadowRadius">1</item>
 	  </style>
-	  
-	  
-<!-- Setting text -->
-   		<style name="setting_text_enable">
-	     <item name="android:textColor">#ffffffff</item>
-	    <item name="android:textSize">12sp</item>
-	  </style>
-	  
-   		<style name="setting_text_disable">
-	    <item name="android:textColor">#ffffffff</item>
-	    <item name="android:textSize">12sp</item>
-	  </style>
-<!-- Setting text summary-->
-       	<style name="setting_summary_text_enable">
-	    <item name="android:textColor">#ffffffff</item>
-	    <item name="android:textSize">12sp</item>
-	  </style>
-	  
-       	<style name="setting_summary_text_disable">
-	    <item name="android:textColor">#ffffffff</item>
-	    <item name="android:textSize">12sp</item>
-	  </style>
-	  
-   	
-
+    
  
 </resources>

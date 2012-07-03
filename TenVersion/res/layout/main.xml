@@ -3,8 +3,114 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+     >
+
 
+    <Button
+        android:id="@+id/safe_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/safe_btn_change"
+        android:layout_marginLeft="30dip"
+        android:layout_marginTop="90dip"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="안전 "
+        android:textSize="18sp" 
+        android:layout_marginLeft="140dip"
+        android:layout_marginTop="150dip"
+        android:textColor="#692E0A"/>
+
+
+
+    <Button
+         android:id="@+id/etc_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/etc_btn_change" 
+            android:layout_marginLeft="48dip"
+    android:layout_marginTop="250dip"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기타 "
+        android:textSize="18sp" 
+        android:layout_marginLeft="140dip"
+        android:layout_marginTop="290dip"
+        android:textColor="#692E0A"/>
+
+
+    <Button
+        android:id="@+id/live_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/live_btn_change" 
+            android:layout_marginLeft="60dip"
+    android:layout_marginTop="180dip"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="생명"
+        android:textSize="18sp" 
+        android:layout_marginLeft="140dip"
+        android:layout_marginTop="220dip"
+        android:textColor="#692E0A"/>
+    
+    
+
+
+    <Button
+        android:id="@+id/setting_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/setting_btn_change" 
+        android:layout_marginLeft="55dip"
+    	android:layout_marginTop="330dip"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="설정"
+        android:textSize="18sp" 
+        android:layout_marginLeft="140dip"
+        android:layout_marginTop="350dip"
+        android:textColor="#692E0A"/>
+
+<!--         <Button
+            android:id="@+id/etc_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="     기타 리스트"
+            android:textSize="18sp" />
+        <Button
+            android:id="@+id/setting_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_weight="1"
+            android:text="설정"
+            android:textSize="18sp" />
+        <Button
+            android:id="@+id/testFlipper_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="@string/testFlipper_btn_txt"
+            android:textSize="18sp" /> -->
+        
+    <!--
     <ImageButton
         android:id="@+id/safe_btn"
         android:layout_width="70dp"
@@ -77,9 +183,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="60dp"
-        android:text="@string/testFlipper_btn_txt" />
-
-
-     
+        android:text="@string/testFlipper_btn_txt" />
+    -->
 
 </RelativeLayout>

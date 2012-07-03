@@ -151,7 +151,7 @@
 	<ImageView 
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/alram"
+		android:src="@drawable/sound"
 	     />
 	<LinearLayout
 		android:layout_width="wrap_content"
@@ -202,7 +202,7 @@
 	 <ImageView 
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/alram"
+		android:src="@drawable/vibrator"
 	     />
 	<LinearLayout
 		android:layout_width="wrap_content"
@@ -249,11 +249,12 @@
 		android:layout_height="50dip"
 		android:orientation="horizontal"
 		android:background="#C9ED75"
+		android:visibility="gone"
 		>
 	<ImageView 
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/alram"
+		android:src="@drawable/info"
 	     />
 	<LinearLayout
 		android:layout_width="wrap_content"
@@ -296,7 +297,7 @@
 	<ImageView 
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/alram"
+		android:src="@drawable/info"
 	     />
 	<LinearLayout
 		android:layout_width="wrap_content"

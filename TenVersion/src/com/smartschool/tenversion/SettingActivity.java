@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
@@ -33,10 +34,9 @@ public class SettingActivity extends Activity implements OnClickListener{
 	//set Button
 	public static RelativeLayout wifiLayout = null;
 	public static RelativeLayout wifiLayout_disable = null;
-	public static Button wifiBtn = null;	
-	public static TextView wifiTV = null;
 	public static TextView wifiSummaryTV = null;
 	
+	public static TextView alarmSummaryTV = null;
 	
 	public static ToggleButton soundTB = null;
 	public static ToggleButton vibrateTB = null;
@@ -51,28 +51,34 @@ public class SettingActivity extends Activity implements OnClickListener{
 	
 	//dialog
     private CustomDialog settingDialog = null ;
+   
+    
+    public static  Context mContext = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-        
+        mContext= this;
 		/**  UI  **/
 		//wifi layout
         wifiLayout = (RelativeLayout)findViewById(R.id.wifi_layout);
         wifiLayout_disable = (RelativeLayout)findViewById(R.id.wifi_layout_disable);
 //        wifiLayout.setOnClickListener(this);
         
-        wifiTV = (TextView)findViewById(R.id.wifi_tv);
+        TextView wifiTV = (TextView)findViewById(R.id.wifi_tv);
         wifiSummaryTV = (TextView)findViewById(R.id.wifi_summary_tv);
-        wifiBtn= (Button)findViewById(R.id.wifi_btn);
+        Button wifiBtn= (Button)findViewById(R.id.wifi_btn);
         wifiBtn.setOnClickListener(this);
                
         //alram layout
         RelativeLayout alramLayout =(RelativeLayout)findViewById(R.id.alram_layout);
         alramLayout.setOnClickListener(this);
         
-        TextView alramTV =(TextView)findViewById(R.id.alram_tv);
+        TextView alramTV = (TextView)findViewById(R.id.alram_tv);
+        alarmSummaryTV= (TextView)findViewById(R.id.alram_summary_tv);
+        Button alarmBtn= (Button)findViewById(R.id.alram_btn);
+        alarmBtn.setOnClickListener(this);
         
         //sound layout
         RelativeLayout soundLayout =(RelativeLayout)findViewById(R.id.sound_layout);
@@ -120,15 +126,21 @@ public class SettingActivity extends Activity implements OnClickListener{
 
 	public void onClick(View v) {
 		switch(v.getId()){
-		
-		
+		case R.id.wifi_layout:
+			Log.v(TAG,"onclick() wifi_layout ");
+			chooseWifiDialog();
+			break;
 		case R.id.wifi_btn:
 			Log.v(TAG,"onclick() wifi_btn ");
 			chooseWifiDialog();
-			
 			break;
+			
 		case R.id.alram_layout:
 			Log.v(TAG,"onclick() alram_layout ");
+			setAlramDialog();
+			break;
+		case R.id.alram_btn:
+			Log.v(TAG,"onclick() alram_btn ");
 			setAlramDialog();
 			break;
 		case R.id.sound_layout:
@@ -145,6 +157,8 @@ public class SettingActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.version_layout:
 			Log.v(TAG,"onclick() version_layout ");
+			Intent intent = new Intent(this,VersionInfo.class);
+			startActivity(intent);
 
 			break;
 		case R.id.sound_togglebtn:
@@ -287,13 +301,9 @@ public class SettingActivity extends Activity implements OnClickListener{
     	customDialog.alarmDialog();
     	customDialog.show();
     }
-    public  void  setAlram(WifiListProfile item){
+    public  void  setAlram(String time){
 	   	 Log.v(TAG,"[setAlram] ");
-//		String ssid = item.getSSID();
-//		String bssid = item.getBSSID();
-//		wifiSummaryTV.setText(ssid);
-//		setWifiSetting(ssid,bssid);
-//		WifiReceiver.compairWifiConnectionMode(this);
+	   	 alarmSummaryTV.setText("");
     }
     
 

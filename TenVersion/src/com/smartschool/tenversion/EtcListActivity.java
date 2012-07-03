@@ -1,4 +1,4 @@
-﻿package com.smartschool.tenversion;
+package com.smartschool.tenversion;
 
 import java.util.ArrayList;
 

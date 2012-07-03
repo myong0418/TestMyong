@@ -37,7 +37,7 @@ public class PreviewListActivity extends Activity implements OnClickListener{
 		
 		previewTV = (TextView)findViewById(R.id.preview_tv);
 
-
+		
         updateListview();
 	}
 	
